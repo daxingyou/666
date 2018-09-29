@@ -1,0 +1,67 @@
+[{
+
+	"one":"",
+
+	"oneName":[
+		{
+			"id":0,
+			"Name":"混合",
+			"isSelect":true
+		},
+		{
+			"id":1,
+			"Name":"和值特码",
+			"isSelect":false
+		},
+		{
+			"id":2,
+			"Name":"特码包三",
+			"isSelect":true
+		}
+	],
+	
+	"two":"",
+
+	"twoSelects":[
+		{
+			"id":0,
+			"twoName":[
+				{
+					"id":0,
+					"Name":"混合",
+					"playId":657,
+					"playPlId":14261,
+					"isSelect":true,
+					"playType":"Play300"
+				}
+			]
+		},
+		{
+			"id":1,
+			"twoName":[
+				{
+					"id":0,
+					"Name":"和值特码",
+					"playId":293,
+					"playPlId":14261,
+					"isSelect":true,
+					"playType":"Play301"
+				}
+			]
+		},
+		{
+			"id":2,
+			"twoName":[
+				{
+					"id":0,
+					"Name":"特码包三",
+					"playId":658,
+					"playPlId":14261,
+					"isSelect":true,
+					"playType":"Play302"
+				}
+			]
+		}
+	]
+
+}]

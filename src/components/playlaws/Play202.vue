@@ -1,0 +1,227 @@
+<template>
+	<!-- 框架 -->
+	<div id="iframe">
+
+		<!-- 投注号码 -->
+		<div class="machine-select">
+			<h3>
+				<var>至少选择1个号码 </var>
+				<p>
+					<span class="one">机选一注</span>
+				</p>
+			</h3>
+		</div>
+		<div class="hcl-container">
+			<div class="tips">第三位</div>
+			<div class="number">
+				<div class="item"><span>01</span></div>
+				<div class="item"><span>02</span></div>
+				<div class="item"><span>03</span></div>
+				<div class="item"><span>04</span></div>
+				<div class="item"><span>05</span></div>
+				<div class="item"><span>06</span></div>
+				<div class="item"><span>07</span></div>
+				<div class="item"><span>08</span></div>
+				<div class="item"><span>09</span></div>
+				<div class="item"><span>10</span></div>
+				<div class="item"><span>11</span></div>
+            
+			</div>
+		</div>
+		<div class="hcl-container">
+			<div class="tips">第四位</div>
+			<div class="number">
+				<div class="item"><span>01</span></div>
+				<div class="item"><span>02</span></div>
+				<div class="item"><span>03</span></div>
+				<div class="item"><span>04</span></div>
+				<div class="item"><span>05</span></div>
+				<div class="item"><span>06</span></div>
+				<div class="item"><span>07</span></div>
+				<div class="item"><span>08</span></div>
+				<div class="item"><span>09</span></div>
+				<div class="item"><span>10</span></div>
+				<div class="item"><span>11</span></div>
+			</div>
+		</div>
+		<div class="hcl-container">
+			<div class="tips">第五位</div>
+			<div class="number">
+				<div class="item"><span>01</span></div>
+				<div class="item"><span>02</span></div>
+				<div class="item"><span>03</span></div>
+				<div class="item"><span>04</span></div>
+				<div class="item"><span>05</span></div>
+				<div class="item"><span>06</span></div>
+				<div class="item"><span>07</span></div>
+				<div class="item"><span>08</span></div>
+				<div class="item"><span>09</span></div>
+				<div class="item"><span>10</span></div>
+				<div class="item"><span>11</span></div>
+			</div>
+		</div>
+		
+
+		<!-- 确定 -->
+		<FixedBottom></FixedBottom>
+		
+		<!-- 注单设定 -->
+		<NoteSetting></NoteSetting>
+
+	</div>
+	
+	
+</template>
+
+<script>
+	export default{
+		name:'Play400',
+		data(){
+			return{
+				setValue:{
+					// 每注金额
+					money:2,
+					// 总注数
+					notes:0,
+					// 号码
+					number:[]
+				}
+			}
+		},
+		computed:{
+			
+		},
+		created(){
+			// 存储方法
+			this.setPlay();
+
+		},
+		methods:{
+			// 设置数据(必要)
+			setPlay(){
+				this.$store.state.BuyNsidePage.pageConfig=this.setValue
+				this.test();
+			},
+			
+			setData(content,playPlId,playPl){
+				var _this=this;
+
+				// 创建一个空对象
+				var zhu={};
+
+				// 选中文字
+				zhu.content=content
+				// 赔率id
+				zhu.playPlId = playPlId
+				
+				// 赔率
+				zhu.playPl = playPl 
+				
+				// 号码
+				_this.setValue.number.push(zhu)
+
+
+				_this.setPlay();
+			}
+
+		},
+		mounted(){
+			var _this=this
+			_this.$nextTick(function(){
+			//机选一注
+				function count(total_zhu){
+					// 清空
+					var arr=_this.$store.state.BuyNsidePage.pageConfig.number
+					arr.splice(0,arr.length);
+
+					// 注数
+					var num=total_zhu;
+					// 选中的文字数组
+					var arr=[];
+					var str = ''
+					$('.hcl-container').each((index,val)=>{
+						$(val).find('.number .item.active').each((inde,val)=>{
+							str+=','+$(val).text();
+						})
+						str+='|';
+					})
+					str = str.slice(1,arr.length-1)
+					str = str.replace(/\|\,/g,'|');
+					console.log(str);
+					
+					// 设置数据
+					_this.setData(str,14448,975.15);
+					// 注数
+					_this.setValue.notes=num
+					
+				}
+
+			
+				$('.machine-select h3 p span').on('click',function() {
+					var total = $('.hcl-container .number').eq(0).children('.item').length;
+					var resuit = rand_one_zhu(total,3);
+					$('.hcl-container .number .item').removeClass('active');
+					for (let index = 0; index < resuit.length; index++) {
+						$('.hcl-container .number').eq(index).children('.item').eq(resuit[index]-1).addClass('active');
+					}
+					count(1);
+				})
+				//选一注
+
+
+				
+				//检索注的数据是否符合要求符合则返回真反之返回假
+				function total_zhu_test(){
+					var target_elements = $('.hcl-container .number')
+					for (let index = 0; index < target_elements.length; index++) {
+						const element = target_elements[index];
+						if($(element).children('.item.active').length==0){
+							return false;
+						}
+					}
+					return true;
+				}
+				//获取所有的注数
+				function total_zhu(){
+					var target_elements = $('.hcl-container .number')
+					var arry = [];
+					for (let count_1 = 0; count_1 < target_elements.eq(0).children('.item.active').length; count_1++) {
+						const value_1 = target_elements.eq(0).children('.item.active').eq(count_1).children('span').text()
+						
+						for (let count_2 = 0; count_2 < target_elements.eq(1).children('.item.active').length; count_2++) {
+							const value_2 = target_elements.eq(1).children('.item.active').eq(count_2).children('span').text()
+							
+							for (let count_3 = 0; count_3 < target_elements.eq(2).children('.item.active').length; count_3++) {
+								const value_3 = target_elements.eq(2).children('.item.active').eq(count_3).children('span').text()
+								var tempArry = [
+									parseInt(value_1),
+									parseInt(value_2),
+									parseInt(value_3)
+								]
+								arry.push(tempArry);
+							}
+						}
+					}
+					return arry
+				}
+				//去掉重复的注数
+				function total_zhu_filter(arry_total_zhu){
+					return arry_total_zhu.filter(item=>item[0]!=item[1]&&item[1]!=item[2]&&item[2]!=item[0])
+				}
+
+				//默认点击事件
+				$('.hcl-container .number .item').on('click',function() {
+					$(this).toggleClass('active');
+					if(total_zhu_test()){
+						var arry_total_zhu = total_zhu();
+						count(total_zhu_filter(arry_total_zhu).length);
+					}else{
+						count(0);
+					}
+					
+                })
+            })
+		}
+	}
+</script>
+
