@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head design-width="750">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>11086彩票网</title>
+<link rel="stylesheet" href="static/css/reset.css" /><!--重置样式-->
+<link rel="stylesheet" href="static/css/style.css" /><!--页面样式-->
+<link rel="stylesheet" href="static/css/common.css" /><!--常用样式库-->
+<link rel="stylesheet" href="static/css/animate.min.css" /><!--CSS3动画库-->
+<link rel="stylesheet" href="static/css/date.css" /><!--日期样式-->
+<script src="static/js/auto-size.js"></script><!--设置字体大小-->
+</head>
+<body>
+
+	<div id="app">
+
+		<div class="dataloadding center" style="display: block;">
+			<div class="layout">
+				<img src="static/img/icon/oval.svg" alt="">
+				<p>加载中...</p>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script src="static/js/jquery-2.2.4.min.js"></script><!--jQ库-->
+	<script src="static/js/swiper-4.2.0.min.js"></script><!--轮播库-->
+	<script src="static/js/jquery.kxbdmarquee.js"></script><!--滚动库-->
+	<script src="static/js/clipboard.min.js"></script><!--设置剪贴板-->
+	<script src="static/js/date.js"></script><!--日期插件-->
+	<script src="static/js/MobEpp-1.1.1.js"></script><!-- MobEpp库 -->
+	<script>
+
+		var lastTouchEnd = 0;
+		document.documentElement.addEventListener('touchend', function (event) {
+			var now = Date.now();
+			if (now-lastTouchEnd <= 300) {
+				event.preventDefault();
+			};
+			lastTouchEnd=now;
+		},false);
+
+		var sUserAgent = window.navigator.userAgent.toLowerCase();
+		if(sUserAgent.match(/mqqbrowser/i)=='mqqbrowser'){
+			$("html").css("fontSize","55.2px");
+		}
+	</script>
+</body>
+</html>
