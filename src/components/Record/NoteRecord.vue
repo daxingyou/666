@@ -99,7 +99,7 @@
 			setcurrid(id){
 				// 关闭自定义查询
 				this.$store.state.screen.query=false
-
+				this.pageIndex = 1
 				this.currid=id
 				this.record=[]
 				this.query();
