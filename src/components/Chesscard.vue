@@ -169,7 +169,7 @@
 			// 开元棋牌
 			getChessUrl(KindID,title){
 				var _this=this;
-				var winRef = window.open("","_blank");
+				 
 				this.ajax('getChessUrl',{
 					uid:_this.uid,
 					token:_this.token,
@@ -177,14 +177,18 @@
 					KindID:KindID
 				},
 				data => {
+					console.log(111111111111);
+					console.log(data);
+					
 					if(data.result==-100){
 						this.$router.push({"name":"Login"})
-						winRef.close();
 					}else if(data.result==0){
+						// var winRef = window.open("","_blank");
 						tipsTotice(data.description)
-						winRef.close();
+						// winRef.close();
 					}else{
 						function web(){
+							var winRef = window.open("","_blank");
 							winRef.location=data.loginUrl
 						}
 						setTimeout(function(){

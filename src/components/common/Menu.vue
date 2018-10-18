@@ -36,8 +36,8 @@
 
 			<li><router-link to="/Quota">额度转换</router-link></li>
 
-			<li><router-link to="/LotteryHall">购彩大厅</router-link></li>
-			
+			<!-- <li><router-link to="/LotteryHall">购彩大厅</router-link></li> -->
+
 			<li><router-link to="/Chesscard">棋牌</router-link></li>
 
 		</ul>

@@ -42,11 +42,14 @@
 				msg:'',
 				isShow:false,
 
-				// username:'Niubi123456',
-				// password:'niubi123',
+				username:'',
+				password:'',
 
-				username:'test520',
-				password:'123456',
+					username:'Niubi123456',
+				password:'niubi123',
+
+				// username:'test520',
+				// password:'123456',
 
 				// username:'mumu22',
 				// password:'mm000000',

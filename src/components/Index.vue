@@ -72,7 +72,7 @@
 			</ul>
 		</div>
 
-		<div class="hot-cai">
+		<!-- <div class="hot-cai">
 			<div class="pub-tit"><span>热门彩种</span></div>
 			<ul>
 				<li>
@@ -242,8 +242,8 @@
 					</a>
 				</li>
 			</ul>
-		</div>
-		
+		</div> -->
+
 		<div class="qipai">
 			<div class="pub-tit"><span>开元棋牌</span></div>
 			<ul>
@@ -293,7 +293,7 @@
 						<span>百家乐</span>
 					</a>
 				</li>
-				
+
 				<li>
 
 					<a @click="getChessUrl(600,'二十一点')" title="">
@@ -322,26 +322,54 @@
 				</li>
 			</ul>
 		</div>
-		
-		<div class="zhongbang">
-			<div class="pub-tit"><i class="ico-prizel"></i>最新中奖榜</div>
-			<div class="updown">
-				<ul>
-					<li v-for="item in winningList">
-						<div class="fl">
-							<h2><i class="ico-prize"></i>{{ item.userName }}</h2>
-							<p>{{ item.type }}</p>
+
+		<div class="bocai">
+			<div class="pub-tit"><span>体育博弈</span></div>
+			<ul>
+				<li>
+					<a @click="getSportUrl(1)" title="">
+						<div class="pict">
+							<img src="../../static/img/2d0f522818ce6230cb42cf98357af468_82x85.png" alt="">
 						</div>
-						<div class="fr">
-							喜中{{ item.amount | money }}元
+						<div class="text">
+							<b>足球竞彩</b>
+							<p>激情赛事不错过</p>
 						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		
+					</a>
+				</li>
+				<li>
+					<a @click="getSportUrl(2)" title="">
+						<div class="pict">
+							<img src="../../static/img/fd770a6ea5da0be5540a96679480ade2_80x79.png" alt="">
+						</div>
+						<div class="text">
+							<b>篮球竞彩</b>
+							<p>一场篮球盛宴</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div> 
+
+        <div class="zhongbang">
+        <div class="pub-tit"><i class="ico-prizel"></i>最新中奖榜</div>
+        <div class="updown">
+          <ul>
+            <li v-for="item in winningList">
+              <div class="fl">
+                <h2><i class="ico-prize"></i>{{ item.userName }}</h2>
+                <p>{{ item.type }}</p>
+              </div>
+              <div class="fr">
+                喜中{{ item.amount | money }}元
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
 		<Footer acti="1"></Footer>
-	
+
 		<!-- 下载提示 -->
 		<div class="down-app center hide">
 			<i class="ico-close1"></i>
@@ -357,7 +385,7 @@
 
 
 <script>
-	
+
 	export default {
 		name:'Index',
 		data(){
@@ -369,7 +397,7 @@
 				// 轮播图
 				carouselList:[],
 				// 公告
-				noticeList:[],			
+				noticeList:[],
 				// 中奖榜
 				winningList:[],
 
@@ -409,7 +437,7 @@
 				setTimeout(function(){
 					$(".index-notice .scroll").kxbdMarquee({isEqual:"up"});
 				},1)
-			}		
+			}
 			// 中奖榜
 			if(winningList.length==0){
 				this.winninglist();
@@ -476,7 +504,6 @@
 			// 开元棋牌
 			getChessUrl(KindID,title){
 				var _this=this;
-				var winRef = window.open("","_blank");
 				this.ajax('getChessUrl',{
 					uid:_this.uid,
 					token:_this.token,
@@ -487,12 +514,11 @@
 					// console.log(data)
 					if(data.result==-100){
 						this.$router.push({"name":"Login"})
-						winRef.close();
 					}else if(data.result==0){
 						tipsTotice(data.description)
-						winRef.close();
 					}else{
 						function web(){
+							var winRef = window.open("","_blank");
 							winRef.location=data.loginUrl
 						}
 						setTimeout(function(){
@@ -503,7 +529,7 @@
 			},
 			// 体育
 			getSportUrl(KindID,title){
-				
+
 				var _this=this;
 
 				var winRef = window.open("","_blank");
@@ -528,7 +554,7 @@
 						setTimeout(function(){
 							web();
 						},100)
-					}		
+					}
 				})
 			},
 			// 轮播
